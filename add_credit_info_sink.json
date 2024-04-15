@@ -1,0 +1,21 @@
+curl --location --request POST 'http://localhost:8083/connectors/' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "name": "oracle-to-mysql-sink-three",
+      "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "connection.url": "jdbc:oracle:thin:@172.20.45.104:1521/orcl",
+        "connection.user": "grc_test",
+        "connection.password": "grc_test",
+        "topics": "incre_test",
+        "auto.create": "true",
+        "auto.evolve": "true",
+        "insert.mode": "upsert",
+        "pk.mode": "record_value",
+        "pk.fields": "ID",
+        "value.converter": "io.confluent.connect.avro.AvroConverter",
+        "value.converter.schema.registry.url": "http://schema-registry:8081",
+        "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+        "table.name.format": "GRC_TEST.${topic}" 
+      }
+}'

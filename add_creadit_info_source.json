@@ -1,0 +1,87 @@
+curl --location --request POST 'http://localhost:8083/connectors/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "test_connector_ten",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:oracle:thin:@172.20.45.104:1521/orcl",
+    "connection.user": "grc_test",
+    "connection.password": "grc_test",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "topic.prefix": "incre_test",
+    "mode": "timestamp",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "query": "SELECT * FROM DG_ACCOUNTING.ADD_CREDIT_INFO",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "key.converter.schema.registry.url": "http://schema-registry:8081",
+    "offset.flush.timeout.ms": 2000
+  }
+}'
+
+
+// {
+//     "name": "test_connector_ten",
+//     "config": {
+//       "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+//       "connection.url": "jdbc:oracle:thin:@172.20.45.104:1521/orcl",
+//       "connection.user": "grc_test",
+//       "connection.password": "grc_test",
+//       "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+//       "topic.prefix": "incre_test",
+//       "mode": "incrementing+timestamp",
+//       "incrementing.column.name": "ID", // Replace "ID" with your incrementing column name
+//       "timestamp.column.name": "last_updated", // Replace "last_updated" with your timestamp column name
+//       "value.converter": "io.confluent.connect.avro.AvroConverter",
+//       "query": "SELECT * FROM DG_ACCOUNTING.ADD_CREDIT_INFO",
+//       "value.converter.schema.registry.url": "http://schema-registry:8081",
+//       "key.converter.schema.registry.url": "http://schema-registry:8081",
+//       "offset.flush.timeout.ms": 2000
+//     }
+//   }
+
+// curl --location --request POST 'http://localhost:8083/connectors/' \
+// --header 'Content-Type: application/json' \
+// --data-raw '{
+//   "name": "test_connector_eleven",
+//   "config": {
+//     "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+//     "connection.url": "jdbc:oracle:thin:@172.20.45.104:1521/orcl",
+//     "connection.user": "grc_test",
+//     "connection.password": "grc_test",
+//     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+//     "mode": "timestamp",
+//     "value.converter": "io.confluent.connect.avro.AvroConverter",
+//     "value.converter.schema.registry.url": "http://schema-registry:8081",
+//     "key.converter.schema.registry.url": "http://schema-registry:8081",
+//     "offset.flush.timeout.ms": 2000,
+//     "table.whitelist": "DG_ACCOUNTING.ADD_CREDIT_INFO",
+//     "transforms": "topic",
+//     "transforms.topic.type": "org.apache.kafka.connect.transforms.RegexRouter",
+//     "transforms.topic.regex": ".*",
+//     "transforms.topic.replacement": "${schema}-${table}"
+//   }
+// }'
+
+
+
+
+
+curl --location --request POST 'http://localhost:8083/connectors/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "test_connector_thertin",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:oracle:thin:@172.20.45.104:1521/orcl",
+    "connection.user": "grc_test",
+    "connection.password": "grc_test",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "mode": "timestamp",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "key.converter.schema.registry.url": "http://schema-registry:8081",
+    "offset.flush.timeout.ms": 2000,
+    "query": "SELECT * FROM DG_ACCOUNTING.ADD_CREDIT_INFO",
+    "topic.prefix": "DG_ACCOUNTING-ADD_CREDIT_INFO"
+  }
+}'

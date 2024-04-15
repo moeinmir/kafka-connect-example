@@ -1,0 +1,3 @@
+refrence link: https://github.com/saubury/kafka-connect-oracle-cdc
+curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connector-plugins | jq '.'
+curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connectors/test_connector_thertin/status | jq
