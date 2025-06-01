@@ -1,0 +1,17 @@
+{
+  "name": "postgres-sink-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "topics": "pg-sourcetable",
+    "connection.url": "jdbc:postgresql://172.27.133.144:5432/kafkaconnecttest",
+    "connection.user": "postgres",
+    "connection.password": "changeme",
+    "insert.mode": "insert",
+    "auto.create": "true",
+    "auto.evolve": "true",
+    "table.name.format": "sinkschema.sinktable",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081"
+  }
+}

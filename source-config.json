@@ -1,0 +1,17 @@
+{
+  "name": "postgres-source-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:postgresql://172.27.133.144:5432/kafkaconnecttest",
+    "connection.user": "postgres",
+    "connection.password": "changeme",
+    "mode": "incrementing",
+    "incrementing.column.name": "id",
+    "table.include.list": "sourceschema.sourcetable",
+    "topic.prefix": "pg-",
+    "poll.interval.ms": 2000,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081"
+  }
+}
