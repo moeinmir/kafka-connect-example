@@ -3,8 +3,7 @@
 ###### Download required jdbc connector from confluent hub so it respond to this mapping in your compose
 ```
     volumes:
-      - ./plugins/confluentinc-kafka-connect-oracle-cdc:/usr/share/java/confluentinc-kafka-connect-oracle-cdc
-      - ./plugins/confluentinc-kafka-connect-jdbc-10.8.4:/usr/share/java/confluentinc-kafka-connect-jdbc
+      - ./plugins/confluentinc-kafka-connect-jdbc-5.5.15:/usr/share/java/confluentinc-kafka-connect-jdbc
 
 ```
 

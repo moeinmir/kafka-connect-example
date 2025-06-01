@@ -85,7 +85,6 @@ services:
     #   docker cp kafka-connect:/usr/share/confluent-hub-components ./data/connect-jars
     volumes:
       - $PWD/data:/data
-      - ./plugins/confluentinc-kafka-connect-oracle-cdc:/usr/share/java/confluentinc-kafka-connect-oracle-cdc
       - ./plugins/confluentinc-kafka-connect-jdbc-5.5.15:/usr/share/java/confluentinc-kafka-connect-jdbc
 
     # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
