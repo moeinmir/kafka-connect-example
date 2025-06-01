@@ -1,20 +1,20 @@
-# kafka-connect
+# Kafka Connect Example
 
-## Download required jdbc connector from confluent hub so it respond to this mapping in your compose
+###### Download required jdbc connector from confluent hub so it respond to this mapping in your compose
 ```
     volumes:
-      - ./confluentinc-kafka-connect-oracle-cdc:/usr/share/java/confluentinc-kafka-connect-oracle-cdc
-      - ./confluentinc-kafka-connect-jdbc-10.8.4:/usr/share/java/confluentinc-kafka-connect-jdbc
+      - ./plugins/confluentinc-kafka-connect-oracle-cdc:/usr/share/java/confluentinc-kafka-connect-oracle-cdc
+      - ./plugins/confluentinc-kafka-connect-jdbc-10.8.4:/usr/share/java/confluentinc-kafka-connect-jdbc
 
 ```
 
-## Suppose you have postgres running on you machine on the default port
+###### Suppose you have postgres running on you machine on the default port
 
 
-# How to use it for kafka:
+###### How to use it for kafka:
 in order  to use kafka connect for oracle databases you need to download the required plugin and make the kafka connect access it buy specifying its path in volumes mapping
 
-# Prepare the test database
+###### Prepare the test database
 
 ```
 CREATE DATABASE kafkaconnecttest
@@ -51,16 +51,16 @@ CREATE TABLE sinkschema.sinktable (
 
 ```
 
-# run the compose 
+###### Run the compose 
 ```
 sudo docker-compose up
 ```
 
-# to see the available plugins run:
+###### To see the available plugins run:
 ```
 curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connector-plugins | jq '.'
 ```
-# deploy source test connector:
+###### Deploy source test connector:
 
 ```
 curl -X POST -H "Content-Type: application/json" \
@@ -68,14 +68,14 @@ curl -X POST -H "Content-Type: application/json" \
     http://localhost:8083/connectors
 
 ```
-# deploy sink test connector:
+###### Deploy sink test connector:
 
 ```
 curl -X POST -H "Content-Type: application/json" \
     --data @sink-config.json \
     http://localhost:8083/connectors
 ```
-# to see the status of the connector run:
+###### To see the status of the connector run:
 
 ```
 curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connectors/postgres-source-connector/status | jq
@@ -83,14 +83,14 @@ curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connect
 
 ```
 
-# insert some test data to see if it works
+###### Insert some test data to see if it works
 ```
-INSERT INTO sourcescehma.sourcetable (name) VALUES ('Alice'), ('Bob');
+INSERT INTO sourceschema.sourcetable (name) VALUES ('Alice'), ('Bob');
 ```
 
-# follow the topics and messages on kafdrop that is available on port 9000 of you machine
+###### Follow the topics and messages on kafdrop that is available on port 9000 of you machine
 
 
-# original compose source:(https://github.com/confluentinc/demo-scene/blob/master/kafka-connect-zero-to-hero/docker-compose.yml)
+###### Original compose source:(https://github.com/confluentinc/demo-scene/blob/master/kafka-connect-zero-to-hero/docker-compose.yml)
 
 
