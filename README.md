@@ -73,11 +73,11 @@ curl -X POST -H "Content-Type: application/json" \
     --data @sink-config.json \
     http://localhost:8083/connectors
 ```
-###### To see the status of the connector run:
+###### To see the status of the connectors run:
 
 ```
 curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connectors/postgres-source-connector/status | jq
-curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connectors/postgres-source-connector/status | jq
+curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connectors/postgres-sink-connector/status | jq
 
 ```
 
@@ -85,7 +85,10 @@ curl -s -X GET -H 'Content-Type: application/json' http://localhost:8083/connect
 ```
 INSERT INTO sourceschema.sourcetable (name) VALUES ('Alice'), ('Bob');
 ```
-
+###### Check to see if it is although inserted in sinktable of sinkschema
+```
+SELECT * FROM sinkschema.sinktable;
+```
 ###### Follow the topics and messages on kafdrop that is available on port 9000 of you machine
 
 
