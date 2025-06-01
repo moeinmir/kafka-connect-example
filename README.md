@@ -11,8 +11,7 @@
 ###### Suppose you have postgres running on you machine on the default port
 
 
-###### How to use it for kafka:
-in order  to use kafka connect for oracle databases you need to download the required plugin and make the kafka connect access it buy specifying its path in volumes mapping
+
 
 ###### Prepare the test database
 
